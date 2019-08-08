@@ -1,0 +1,40 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "fname": "Alan",
+      "lname": "Turing",
+      "age": 49
+    },
+    {
+      "id": 2,
+      "fname": "Benny",
+      "lname": "J",
+      "age": 34
+    },
+    {
+      "id": 3,
+      "fname": "Cathy",
+      "lname": "Pacific",
+      "age": 90
+    },
+    {
+      "id": 4,
+      "fname": "Daniel",
+      "lname": "Waterloo",
+      "age": 20
+    },
+    {
+      "id": "5",
+      "fname": "dasdas",
+      "lname": "dasdasd",
+      "age": "12"
+    },
+    {
+      "id": "6",
+      "fname": "ewq",
+      "lname": "eqwewq",
+      "age": "12"
+    }
+  ]
+}

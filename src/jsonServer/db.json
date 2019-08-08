@@ -1,4 +1,49 @@
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ca9c59d8f308f3d89c69e0dff18ad8ae7648554c
+  "data": [
+    {
+      "fname": "Alan",
+      "lname": "Turing",
+      "age": "49",
+      "id": 3
+    },
+    {
+      "id": 4,
+      "fname": "Daniel",
+      "lname": "Waterloo",
+      "age": 20
+    },
+    {
+      "id": 5,
+      "fname": "Erica",
+      "lname": "Smith",
+      "age": 8
+    },
+    {
+      "id": 6,
+      "fname": "Frank",
+      "lname": "Ng",
+      "age": 17
+    },
+    {
+      "id": "10",
+      "fname": "Tiffany",
+      "lname": "Yuen",
+      "age": "12"
+    },
+    {
+      "id": "9",
+      "fname": "Meredith",
+      "lname": "Grey",
+      "age": "42"
+    }
+  ]
+<<<<<<< HEAD
+=======
+=======
     "data":[
         {
             "id": 1,
@@ -37,4 +82,6 @@
             "age": 17
         }
     ]
+>>>>>>> 15f20cc3c7a60ea6cd53cdba8e07e8c89df02cd6
+>>>>>>> ca9c59d8f308f3d89c69e0dff18ad8ae7648554c
 }

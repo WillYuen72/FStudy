@@ -15,7 +15,10 @@ import {
   Submenu,
   Header,
   Main,
-  Footer
+  Footer,
+  Form,
+  FormItem,
+  Input
 } from 'element-ui'
 import locale from 'element-ui/lib/locale'
 import i18n from '../locales'
@@ -26,7 +29,7 @@ const INIT_ELEMENTS = [
   Table, TableColumn, Pagination,
   Row,
   Aside, Menu, MenuItem, Submenu, MenuItemGroup,
-  Container, Header, Main, Footer
+  Container, Header, Main, Footer, Form, FormItem, Input
 ]
 
 function initElementUI (Vue) {
