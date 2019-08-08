@@ -54,24 +54,36 @@ export default {
     },
     methods:{
         addData(){
-        axios.post('http://localhost:3000/data',{'id':this.formLabelAlign.id,'fname':this.formLabelAlign.fname,'lname':this.formLabelAlign.lname,'age':this.formLabelAlign.age})
-        .then((Response)=>{
-                console.log(Response);
-                this.$router.push({
-                path:'/demo/paged-table',
+        var flag=this.checkEmpty(this.formLabelAlign.id)&&this.checkEmpty(this.formLabelAlign.fname)&&this.checkEmpty(this.formLabelAlign.lname)&&this.checkEmpty(this.formLabelAlign.age);
+        if(flag){
+            axios.post('http://localhost:3000/data',{'id':this.formLabelAlign.id,'fname':this.formLabelAlign.fname,'lname':this.formLabelAlign.lname,'age':this.formLabelAlign.age})
+            .then((Response)=>{
+                    console.log(Response);
+                    this.$router.push({
+                    path:'/demo/paged-table',
+                    })
                 })
-            })
-            .catch(function(error){
-            console.log(error);
-            })
+                .catch(function(error){
+                alert('database error');
+                console.log(error);
+                })
 
+            }else{
+        alert('数据不能为空');
+            }
         },
-                toBack(){
+        toBack(){
             this.$router.push({
                     path:'/demo/paged-table',
                 })
+        },
+        checkEmpty(val){
+            if(!val){
+                console.log('数据不能为空');
+                return false;
+            }
+            return true;
         }
     }
 }
 </script>
->

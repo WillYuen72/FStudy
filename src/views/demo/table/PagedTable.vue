@@ -65,14 +65,15 @@ export default {
       })
     },
     deleteR(index,row){
-      axios.delete(`http://localhost:3000/data/${row.id}`)
-          .then((response)=>{
-              console.log(response);
-              this.getData();
-            })
-            .catch(function(error){
-              console.log(error);
-            })
+      this.$router.push({
+        path:'/delete',
+        query:{
+          id: row.id,
+          fname: row.fname,
+          lname:row.lname,
+          age:row.age
+        }
+      })
     },
     add(){
       this.$router.push({
@@ -89,7 +90,8 @@ export default {
                 this.data=response.data;
         })
         .catch(function (error){
-                console.log(error);
+          alert('database error');
+          console.log(error);
         })
     }
   }

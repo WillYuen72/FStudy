@@ -29,9 +29,9 @@ export default {
         return{
             id:'',
             formLabelAlign:{
-                fname:'',
-                lname:'',
-                age:''
+                fname:this.$route.query.fname,
+                lname:this.$route.query.lname,
+                age:this.$route.query.age
             },
             rules:{
                 id:[
@@ -54,6 +54,8 @@ export default {
     },
     methods:{
         edit(){
+            var flag=this.checkEmpty(this.formLabelAlign.id)&&this.checkEmpty(this.formLabelAlign.fname)&&this.checkEmpty(this.formLabelAlign.lname)&&this.checkEmpty(this.formLabelAlign.age);
+            if(flag){
             axios.put(`http://localhost:3000/data/${this.id}`,
             {'fname':this.formLabelAlign.fname,'lname':this.formLabelAlign.lname,'age':this.formLabelAlign.age})
                 .then((response)=>{
@@ -63,8 +65,12 @@ export default {
             })
             })
             .catch(function (error){
+            alert('database error');
             console.log(error);
             })
+            }else{
+            alert('数据不能为空');
+            }
         },
         toBack(){
             this.$router.push({

@@ -65,13 +65,13 @@ export default {
     getData(){
       /*var vm = this*/
       axios.get('http://localhost:3000/data')
-           .then((response)=>{
+        .then((response)=>{
                 this.data=response.data;
                 console.log(this.data[0]);
-           })
-           .catch(function (error){
+        })
+          .catch(function (error){
                 console.log(error);
-           })
+        })
     },
     // addData(jsonData){
     //   axios.post('http://localhost:3000/data',jsonData).then(
