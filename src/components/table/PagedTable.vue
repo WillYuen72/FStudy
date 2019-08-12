@@ -107,7 +107,14 @@ export default {
         }
       },
       immediate: true,
-      deep: true
+      deep: true,
+    },
+    paginationEvents:{
+      handler(){
+        if(!this.currentPage.data){
+          this.displayData();
+        }
+      }
     }
   },
   computed: {
@@ -127,7 +134,7 @@ export default {
     total () {
       return this.data.length
     }
-  },
+    },
   methods: {
     sizeChange (size) {
       this.currentPageSize = size

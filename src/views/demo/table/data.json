@@ -1,10 +1,10 @@
 {
   "data": [
     {
+      "id": 1,
       "fname": "Alan",
       "lname": "Turing",
-      "age": 49,
-      "id": 1
+      "age": 49
     },
     {
       "id": 2,
@@ -25,28 +25,16 @@
       "age": 20
     },
     {
-      "id": "5",
-      "fname": "dasdas",
-      "lname": "dasdasd",
-      "age": "12"
+      "id": 5,
+      "fname": "Erica",
+      "lname": "Smith",
+      "age": 8
     },
     {
-      "id": "6",
-      "fname": "ewq",
-      "lname": "eqwewq",
-      "age": "12"
-    },
-    {
-      "fname": "Will",
-      "lname": "Yuen",
-      "age": "25",
-      "id": "7"
-    },
-    {
-      "fname": "Will",
-      "lname": "Yuen",
-      "age": "8",
-      "id": "8"
+      "id": 6,
+      "fname": "Frank",
+      "lname": "Ng",
+      "age": 17
     }
   ]
 }

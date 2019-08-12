@@ -36,58 +36,52 @@ export default {
           index: 1,
           needIcon: true,
           icon: 'el-icon-menu',
-          name: 'table',
-          path: '../demo/paged-table'
+          name: 'Table',
+          path: '/demo/paged-table'
         },
         {
           index: 2,
           needIcon: true,
           icon: 'el-icon-menu',
-          name: 'Transaction',
+          name: 'Sub Menu',
           children: [
             {
               index: 1,
-              name: 'Creat Transaction',
-              path: '../add'
+              name: 'Simple Menu 1'
+            }
+          ]
+        },
+        {
+          index: 3,
+          needIcon: true,
+          icon: 'el-icon-menu',
+          name: 'Sub Menu with Group',
+          children: [
+            {
+              index: 1,
+              isGroup: true,
+              name: 'Group 1',
+              items: [
+                {
+                  index: 1,
+                  name: 'Home',
+                  path: '/'
+                }
+              ]
             },
             {
               index: 2,
-              name: 'Transaction List',
-              path: '../demo/paged-table'
-            },
+              isGroup: true,
+              name: 'Group 2',
+              items: [
+                {
+                  index: 1,
+                  name: 'Sub menu in group 2'
+                }
+              ]
+            }
           ]
-        },
-        // {
-        //   index: 3,
-        //   needIcon: true,
-        //   icon: 'el-icon-menu',
-        //   name: 'Sub Menu with Group',
-        //   children: [
-        //     {
-        //       index: 1,
-        //       isGroup: true,
-        //       name: 'Group 1',
-        //       items: [
-        //         {
-        //           index: 1,
-        //           name: 'Home',
-        //           path: '/'
-        //         }
-        //       ]
-        //     },
-        //     {
-        //       index: 2,
-        //       isGroup: true,
-        //       name: 'Group 2',
-        //       items: [
-        //         {
-        //           index: 1,
-        //           name: 'Sub menu in group 2'
-        //         }
-        //       ]
-        //     }
-        //   ]
-        // }
+        }
       ]
     }
   },

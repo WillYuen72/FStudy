@@ -1,38 +1,51 @@
 <template>
     <el-row>
-        <h1 :style="{color : 'blue'}">View information</h1>
-        <h3>id: {{this.id}}</h3>
-        <h3>Firstname:{{this.fname}}</h3>
-        <h3>Lastname:{{this.lname}}</h3>
-        <h3>age:{{this.age}}</h3>
-        <el-button @click="toBack">返回</el-button>
+    <div v-if="full">
+        <h1>View information</h1>
+        <h4>id: {{this.data[0].id}}</h4>
+        <h4>Firstname:{{this.data[0].fname}}</h4>
+        <h4>Lastname:{{this.data[0].lname}}</h4>
+        <h4>age:{{this.data[0].age}}</h4>
+    </div>
+    <div v-if="empty"><h1>this data has already been delected</h1></div>
+    <el-button @click="back">return</el-button>
     </el-row>
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
     name:'viewInfo',
     data(){
         return{
-            id:'',
-            fname:'',
-            lname:'',
-            age:''
+            data:[],
+            empty:false,
+            full:false
         }
     },
-    created(){
-        this.id = this.$route.query.id
-        this.fname = this.$route.query.fname
-        this.lname = this.$route.query.lname
-        this.age = this.$route.query.age
+    created:function(){
+        axios.get('http://localhost:3000/data',{params:{"id": this.$route.query.id}})
+                .then((response)=>{
+                    this.data=response.data;
+                    console.log(response.data);
+                    if(this.data == false){
+                        this.empty = true
+                    }else{
+                        this.full = true
+                    }
+                })
+                .catch(function (error){
+                        console.log(error);
+                })
     },
     methods:{
-        toBack(){
+        back(){
             this.$router.push({
-                    path:'/demo/paged-table',
-                })
+                path:'/demo/paged-table'
+            })
         }
-    }
+    } 
 }
 </script>
+

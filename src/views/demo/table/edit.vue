@@ -1,19 +1,19 @@
 <template>
     <el-row>
         <h1>editing information</h1>
-        <el-form  :model="formLabelAlign" :rules="rules">
+        <el-form  ref="editform" :model="formLabelAlign" :rules="rules">
             <el-form-item label="FirstName" prop="fname">
-                <el-input v-model="formLabelAlign.fname" ></el-input>
+                <el-input  v-model="formLabelAlign.fname"></el-input>
             </el-form-item>
             <el-form-item label="LirstName" prop="lname">
-                <el-input v-model="formLabelAlign.lname"></el-input>
+                <el-input  v-model="formLabelAlign.lname"></el-input>
             </el-form-item>
             <el-form-item label="Age" prop="age">
-                <el-input v-model="formLabelAlign.age"></el-input>
+                <el-input  v-model="formLabelAlign.age"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button @click="edit">submit</el-button>
-                <el-button @click="toBack">返回</el-button>
+                <el-button type="primary" @click="edit('editform')">submit</el-button>
+                <el-button type="primary" @click="back">cancel</el-button>
             </el-form-item>
         </el-form>
     </el-row>
@@ -22,61 +22,98 @@
 <script>
 import PagedTable from '../../../components/table/PagedTable'
 import axios from 'axios'
+import { setTimeout } from 'timers';
 
 export default {
     name:'edit',
-    data(){
+      data(){
+        var checkfn = (rule,value,callback) => {
+            if(!value){
+                return callback(new Error("please enter firstname"))
+            }else{
+                callback();
+            }
+            };
+            var checkln = (rule,value,callback) => {
+                if(!value){
+                    return callback(new Error("please enter lirstname"))
+                }else{
+                    callback();
+                }
+            };
+            var checkage = (rule,value,callback) => {
+                if(!value){
+                    return callback(new Error("please enter age"))
+                }
+                setTimeout(()=>{
+                    var temp = parseInt(value)
+                    if(!Number.isInteger(temp)){
+                        callback(new Error("please enter a number"))
+                    }else{
+                        callback()
+                    }
+                }, 1000);
+        };
         return{
-            id:'',
+            data:[],
             formLabelAlign:{
-                fname:this.$route.query.fname,
-                lname:this.$route.query.lname,
-                age:this.$route.query.age
+                fname:'',
+                lname:'',
+                age:''
             },
             rules:{
-                id:[
-                    {required: true, message:'enter id',trigger:'blur'}
-                ],
                 fname:[
-                    {required:true, message:'enter firstname',trigger:'blur'}
+                    {validator: checkfn,trigger:'blur'}
                 ],
                 lname:[
-                    {required:true,message:'enter lastname',trigger:'blur'}
+                    {validator: checkln,trigger:'blur'}
                 ],
                 age:[
-                    {required:true, message:'enter age',trigger:'blur'}
+                    {validator:checkage,trigger:'blur'}
                 ]
-            }
+            },
         }
     },
-    created(){
-        this.id = this.$route.query.id
+    created:function(){
+         axios.get('http://localhost:3000/data',{params:{"id": this.$route.query.id}})
+                .then((response)=>{
+                    this.data=response.data;
+                    console.log(response.data);
+                    this.formLabelAlign.fname = this.data[0].fname
+                    this.formLabelAlign.lname = this.data[0].lname
+                    this.formLabelAlign.age = this.data[0].age
+                })
+                .catch(function (error){
+                        console.log(error);
+                })
     },
     methods:{
-        edit(){
-            var flag=this.checkEmpty(this.formLabelAlign.id)&&this.checkEmpty(this.formLabelAlign.fname)&&this.checkEmpty(this.formLabelAlign.lname)&&this.checkEmpty(this.formLabelAlign.age);
-            if(flag){
-            axios.put(`http://localhost:3000/data/${this.id}`,
-            {'fname':this.formLabelAlign.fname,'lname':this.formLabelAlign.lname,'age':this.formLabelAlign.age})
-                .then((response)=>{
-                console.log(response);
-                this.$router.push({
-                path:'/demo/paged-table',
-            })
-            })
-            .catch(function (error){
-            alert('database error');
-            console.log(error);
-            })
-            }else{
-            alert('数据不能为空');
-            }
-        },
-        toBack(){
+        edit(formname){
+            this.$refs[formname].validate((valid)=>{
+                if(valid){
+                     axios.put(`http://localhost:3000/data/${this.$route.query.id}`,
+                    {'fname':this.formLabelAlign.fname,'lname':this.formLabelAlign.lname,'age':this.formLabelAlign.age})
+                          .then((response)=>{
+                            console.log(response);
+                             this.$router.push({
+                                path:'/demo/paged-table',
+                            })
+                        }).catch(function (error){
+                            console.log(error);
+                        })
+                }
+                else{
+                    console.log('error submit!!');
+                    return false;
+                }
+            });
+         },
+        back(){
             this.$router.push({
-                    path:'/demo/paged-table',
-                })
-        }
+                path:'/demo/paged-table'
+            })
+        },
     }
+
 }
 </script>
