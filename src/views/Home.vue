@@ -6,6 +6,9 @@
     <el-row>
       <router-link to="/about">About Us</router-link>
     </el-row>
+    <el-row>
+      <router-link to="/gobang">Gobang</router-link>
+    </el-row>
   </div>
 </template>
 

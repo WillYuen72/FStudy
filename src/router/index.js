@@ -6,6 +6,7 @@ import demo from './route/demo'
 import viewInfo from './route/view'
 import edit from './route/edit'
 import add from './route/add'
+import chess from './route/chess'
 
 Vue.use(Router)
 
@@ -26,6 +27,7 @@ instance.addRoutes(demo)
 instance.addRoutes(viewInfo)
 instance.addRoutes(edit)
 instance.addRoutes(add)
+instance.addRoutes(chess)
 
 instance.beforeEach((to, from, next) => {
   /* must call `next` */
